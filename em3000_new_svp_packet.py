@@ -33,3 +33,9 @@ class EM3000_NEW_SVP_BODY(structObject):
     
 class em3000_new_svp_packet(em_datagram):
     body=EM3000_NEW_SVP_BODY
+    
+    def __init__(self, *args, **kargs):
+        super(em3000_new_svp_packet, self).__init__(*args, **kargs)
+        
+        for record in self.body.records:
+            record.depth = record.depth * self.body.depth_res
