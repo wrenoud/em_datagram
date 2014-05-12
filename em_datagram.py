@@ -28,8 +28,8 @@ class em_datagram(structObject):
     etx=ctype_uchar(value=0x03)
     checksum=ctype_ushort()
 
-    def __init__(self, *args, **kargs):
-        super(em_datagram,self).__init__(*args, **kargs)
+    def unpack(self, bindata):
+        super(em_datagram,self).unpack(bindata)
 
         _year = self.date / 10000
         _month = (self.date % 10000) / 100

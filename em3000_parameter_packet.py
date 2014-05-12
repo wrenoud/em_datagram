@@ -15,9 +15,9 @@ class EM3000_INSTALLATION_BODY(structObject):
 class em3000_parameter_packet(em_datagram):
     body=EM3000_INSTALLATION_BODY
     
-    def __init__(self, *args, **kargs):
-        super(em3000_parameter_packet,self).__init__(*args,**kargs)
-
+    def unpack(self, bindata):
+        super(em3000_parameter_packet,self).unpack(bindata)
+        
         _string = "".join(self.body.parameter_string[:])
         if _string[-1] == '\x00':
             _string = _string[:-2] # trim trailing comma and pad byte
