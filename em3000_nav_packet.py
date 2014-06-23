@@ -1,6 +1,11 @@
 from structObject import *
 from em_datagram import em_datagram
 
+def test(self):
+    print self.input_size
+    return 
+
+
 class EM3000_NAV_BODY(structObject):
     _byte_order=little_endian
     _field_order=(
@@ -27,7 +32,7 @@ class EM3000_NAV_BODY(structObject):
     input_size=ctype_uchar(doc="Number of bytes in input datagram")
     datagram=struct_array(
         object_type=ctype_char(),
-        len=lambda self: self.input_size + 1)
+        len=lambda self: self.input_size + (1 - self.input_size % 2))
 
 class em3000_nav_packet(em_datagram):
     body=EM3000_NAV_BODY
