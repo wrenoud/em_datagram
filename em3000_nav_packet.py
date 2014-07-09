@@ -18,6 +18,7 @@ class EM3000_NAV_BODY(structObject):
         "system_descriptor",
         "input_size",
         "datagram")
+    __slots__ = ['system_no','system_active','system_time','simrad_90']
     latitude=ctype_int(
         getter=lambda x: x/20000000.0,
         doc="Latitude (DD * 2x10^7)")
@@ -33,6 +34,14 @@ class EM3000_NAV_BODY(structObject):
     datagram=struct_array(
         object_type=ctype_char(),
         len=lambda self: self.input_size + (1 - self.input_size % 2))
+
+    def unpack(self, bindata):
+        super(EM3000_NAV_BODY,self).unpack(bindata)
+
+        self.system_no =     (self.system_descriptor & 0b00000011)
+        self.system_active = (self.system_descriptor & 0b10000000) >> 7
+        self.system_time =   (self.system_descriptor & 0b01000000) >> 6
+        self.simrad_90 =     (self.system_descriptor & 0b00001000) >> 3
 
 class em3000_nav_packet(em_datagram):
     body=EM3000_NAV_BODY

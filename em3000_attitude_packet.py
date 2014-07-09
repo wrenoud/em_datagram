@@ -31,12 +31,22 @@ class EM3000_ATTITUDE_BODY(structObject):
     _field_order=(
         "number",
         "records",
-        "descriptor")
+        "system_descriptor")
+    __slots__ = ['system_no','heading_active','roll_active','pitch_active','heave_active']
     number=ctype_ushort(doc="Number of entries")
     records=struct_array(
         object_type=EM3000_ATTITUDE_RECORD,
         len=lambda self: self.number)
-    descriptor=ctype_uchar(doc="Sensor system descriptor")
+    system_descriptor=ctype_uchar(doc="Sensor system descriptor")
     
+    def unpack(self, bindata):
+        super(EM3000_ATTITUDE_BODY,self).unpack(bindata)
+
+        self.system_no =      (self.system_descriptor & 0b00110000) >> 4
+        self.heading_active = (self.system_descriptor & 0b00000001)
+        self.roll_active =    (self.system_descriptor & 0b00000010) >> 1
+        self.pitch_active =   (self.system_descriptor & 0b00000100) >> 2
+        self.heave_active =   (self.system_descriptor & 0b00001000) >> 3
+
 class em3000_attitude_packet(em_datagram):
     body=EM3000_ATTITUDE_BODY
