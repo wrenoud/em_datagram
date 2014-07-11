@@ -42,7 +42,7 @@ class EM3000_ATTITUDE_BODY(structObject):
     def unpack(self, bindata):
         super(EM3000_ATTITUDE_BODY,self).unpack(bindata)
 
-        self.system_no =      (self.system_descriptor & 0b00110000) >> 4
+        self.system_no =      ((self.system_descriptor & 0b00110000) >> 4) + 1
         self.heading_active = (self.system_descriptor & 0b00000001)
         self.roll_active =    (self.system_descriptor & 0b00000010) >> 1
         self.pitch_active =   (self.system_descriptor & 0b00000100) >> 2
