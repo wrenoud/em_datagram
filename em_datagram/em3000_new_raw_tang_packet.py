@@ -1,4 +1,4 @@
-from structObject import *
+from structobject import *
 from em_datagram import em_datagram
 
 class em3000_transmit_sectors(structObject):

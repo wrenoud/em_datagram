@@ -1,9 +1,5 @@
-from structObject import *
+from structobject import *
 from em_datagram import em_datagram
-
-def test(self):
-    print self.input_size
-    return 
 
 
 class EM3000_NAV_BODY(structObject):

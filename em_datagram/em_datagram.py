@@ -1,5 +1,5 @@
 import datetime
-from structObject import *
+from structobject import *
 
 class em_datagram(structObject):
     _byte_order=little_endian

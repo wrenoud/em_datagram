@@ -6,7 +6,7 @@ Module for parsing EM Series datagram formats.
 Dependancy
 ----------
 
-[structObect](https://github.com/wrenoud/structObject)
+[structobect](https://github.com/wrenoud/structobject)
 
 Usage
 -----
