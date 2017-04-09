@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 def isInt(value):
 	return isinstance(value, (int,))
@@ -16,7 +16,7 @@ GIT_REPO = "https://github.com/wrenoud/em_datagram"
 
 setup(
   name = 'em_datagram',
-  packages = ['em_datagrams'], # this must be the same as the name above
+  packages = ['em_datagram'], # this must be the same as the name above
   version = VERSION,
   description = 'Module for parsing EM Series datagram formats',
   author = 'Weston Renoud',
