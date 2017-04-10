@@ -18,7 +18,7 @@ class em3000_parameter_packet(em_datagram):
     def unpack(self, bindata):
         super(em3000_parameter_packet,self).unpack(bindata)
         
-        _string = "".join(self.body.parameter_string[:])
+        _string = b"".join(self.body.parameter_string[:]).decode("ascii")
         if _string[-1] == '\x00':
             _string = _string[:-2] # trim trailing comma and pad byte
         else:

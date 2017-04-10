@@ -31,13 +31,13 @@ class em_datagram(structObject):
     def unpack(self, bindata):
         super(em_datagram,self).unpack(bindata)
 
-        _year = self.date / 10000
-        _month = (self.date % 10000) / 100
-        _day = self.date % 10000 % 100
-        _hour = self.time / 3600000
-        _minute = (self.time % 3600000) / 60000
-        _second = (self.time % 3600000 % 60000) / 1000
-        _micro = self.time % 3600000 % 60000 % 1000 * 1000
+        _year   = int( self.date / 10000 )
+        _month  = int( (self.date % 10000) / 100 )
+        _day    = int( self.date % 10000 % 100 )
+        _hour   = int( self.time / 3600000 )
+        _minute = int( (self.time % 3600000) / 60000 )
+        _second = int( (self.time % 3600000 % 60000) / 1000 )
+        _micro  = int( self.time % 3600000 % 60000 % 1000 * 1000 )
         
         self.date_time = datetime.datetime(_year, _month, _day,
                                           _hour, _minute, _second, _micro)
