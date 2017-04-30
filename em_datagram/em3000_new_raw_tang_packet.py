@@ -36,7 +36,7 @@ class em3000_steered_beams_new(structObject):
         "detection_window_len",
         "beam_no",
         "spare")
-    rc_steer=ctype_short(doc="Beam pointing angle ref RX array (in 0.01 degrees)")
+    rc_steer=ctype_short(getter=lambda x: x/100.0, doc="Beam pointing angle ref RX array (in 0.01 degrees)")
     range=ctype_ushort(doc="Range in 0.25 samples (Two way travel time = R / [ 4 * F / 100 ])")
     sector_id=ctype_uchar(doc="Transmit sector number")
     reflect=ctype_schar(doc="Reflectivity (BS) (in 0.5 dB resolution)")
