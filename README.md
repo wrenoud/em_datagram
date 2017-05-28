@@ -3,6 +3,15 @@ em_datagram
 
 Module for parsing EM Series datagram formats.
 
+Installation
+------------
+
+Simply run the setup.py files
+
+```
+python setup.py install
+```
+
 Dependancy
 ----------
 
